@@ -1,15 +1,12 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'MESSAGE', defaultValue: 'Version 2 active', description: 'Parameter verification')
-    }
     stages {
-        stage('Version 2: System Date') {
+        stage('Version 3: File Handling') {
             steps {
                 checkout scm
-                bat "date /t"
-                
-                echo "The parameter value is: ${params.MESSAGE}"
+
+                bat "echo Experiment 1 Version 3 Result > output.txt"
+                bat "type output.txt"
             }
         }
     }
