@@ -1,14 +1,27 @@
 pipeline {
     agent any
+    
     parameters {
-        string(name: 'USERNAME', defaultValue: 'Sharmila', description: 'Enter the username to store')
+        // This creates the input box in Jenkins
+        string(name: 'USERNAME', defaultValue: 'Admin', description: 'Enter your name to save to a file')
     }
+    
     stages {
-        stage('Version 4: User Logging') {
+        stage('Task 1: Checkout') {
             steps {
+                // Pulls your latest code from GitHub
                 checkout scm
-                echo "Username has been successfully saved to user.txt"
+            }
+        }
+        
+        stage('Task 2 & 3: File Operations') {
+            steps {
+                // Writes the parameter value into a file called user.txt
+                bat "echo ${params.USERNAME} > user.txt"
                 
+                echo "Success: Username has been saved."
+                
+                // Reads the file back to the console to prove it worked
                 bat "type user.txt"
             }
         }
