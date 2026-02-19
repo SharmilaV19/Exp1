@@ -1,16 +1,14 @@
 pipeline {
     agent any
-    parameters {
-        // Task 2: Accept VERSION parameter
-        string(name: 'VERSION', defaultValue: '1.0', description: 'Enter Build Version')
-    }
     stages {
-        stage('Version 3') {
+        stage('Version 4') {
             steps {
                 checkout scm
-                // Task 3: Create version.txt
-                bat "echo ${params.VERSION} > version.txt"
-                bat "type version.txt"
+                // Task 2: Print Git Commit ID
+                echo "The Git Commit ID is: ${env.GIT_COMMIT}"
+                
+                // Task 3: Final build result
+                echo "Build Version 4 is Complete!"
             }
         }
     }
