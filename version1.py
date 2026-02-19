@@ -1,20 +1,16 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'MESSAGE', defaultValue: 'Hello from VS Code', description: 'Enter a message')
+        string(name: 'MESSAGE', defaultValue: 'Version 2 active', description: 'Parameter verification')
     }
     stages {
-        stage('Task 1: Checkout') {
+        stage('Version 2: System Date') {
             steps {
-                checkout scm 
-            }
-        }
-        stage('Task 2 & 3: Console Output') {
-            steps {
+                checkout scm
+                bat "date /t"
+                
                 echo "The parameter value is: ${params.MESSAGE}"
-                bat "echo Hello from Jenkins"
             }
         }
     }
 }
-
